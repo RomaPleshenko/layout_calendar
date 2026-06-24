@@ -30,42 +30,43 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: $calendar-gap;
-
   width: (
     $calendar-columns * $day-size + ($calendar-columns - 1) * $calendar-gap + 2 *
       $calendar-padding
   );
   padding: $calendar-padding;
-
   box-sizing: border-box;
-
   &__day {
     box-sizing: border-box;
-
     width: $day-size;
     height: $day-size;
-
     background-color: $day-bg;
     border: $day-border-width solid $day-border-color;
-
     display: flex;
     align-items: center;
     justify-content: center;
     transition:
       transform 0.5s,
       background-color 0.5s;
-
     &::before {
       font:
         30px Arial,
         sans-serif;
       line-height: 1;
     }
-
     &:hover {
       cursor: pointer;
       background-color: #ffbfcb;
       transform: translateY(-20px);
+    }
+  }
+  &:not(.calendar--start-day--sun),
+  &:not(.calendar--month-length--31),
+  &.calendar--start-day-wed,
+  &.calendar--month-length-29 {
+    .calendar__day::before {
+      position: relative;
+      top: 1px;
     }
   }
 
@@ -83,8 +84,24 @@ body {
     }
   }
 
+  @each $day, $offset in $weekdays {
+    &--start-day-#{$day} {
+      .calendar__day:first-child {
+        margin-left: if($offset > 0, $offset * $day-step, 0);
+      }
+    }
+  }
+
   @for $length from 28 through $calendar-days-count {
     &--month-length--#{$length} {
+      .calendar__day:nth-child(n + #{$length + 1}) {
+        display: none;
+      }
+    }
+  }
+
+  @for $length from 28 through $calendar-days-count {
+    &--month-length-#{$length} {
       .calendar__day:nth-child(n + #{$length + 1}) {
         display: none;
       }
