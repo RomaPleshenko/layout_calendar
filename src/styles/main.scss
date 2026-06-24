@@ -31,8 +31,10 @@ body {
   flex-wrap: wrap;
   gap: $calendar-gap;
 
-  width: $calendar-columns * $day-size + ($calendar-columns - 1) * $calendar-gap +
-    2 * $calendar-padding;
+  width: (
+    $calendar-columns * $day-size + ($calendar-columns - 1) * $calendar-gap + 2 *
+      $calendar-padding
+  );
   padding: $calendar-padding;
 
   box-sizing: border-box;
@@ -64,7 +66,6 @@ body {
       cursor: pointer;
       background-color: #ffbfcb;
       transform: translateY(-20px);
-      transition: transform 0.5s;
     }
   }
 
