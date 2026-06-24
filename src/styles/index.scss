@@ -49,6 +49,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition:
+      transform 0.5s,
+      background-color 0.5s;
 
     &::before {
       font:
@@ -80,7 +83,7 @@ body {
   }
 
   @for $length from 28 through $calendar-days-count {
-    &--length-#{$length} {
+    &--month-length--#{$length} {
       .calendar__day:nth-child(n + #{$length + 1}) {
         display: none;
       }
