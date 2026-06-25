@@ -60,15 +60,6 @@ body {
       transform: translateY(-20px);
     }
   }
-  &:not(.calendar--start-day-sun),
-  &:not(.calendar--month-length-31),
-  &.calendar--start-day-wed,
-  &.calendar--month-length-29 {
-    .calendar__day::before {
-      position: relative;
-      top: 1px;
-    }
-  }
 
   @for $i from 1 through $calendar-days-count {
     .calendar__day:nth-child(#{$i})::before {
@@ -83,7 +74,7 @@ body {
       }
     }
   }
-  
+
   @for $length from 28 through $calendar-days-count {
     &--month-length-#{$length} {
       .calendar__day:nth-child(n + #{$length + 1}) {
