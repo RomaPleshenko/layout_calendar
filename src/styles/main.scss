@@ -60,8 +60,8 @@ body {
       transform: translateY(-20px);
     }
   }
-  &:not(.calendar--start-day--sun),
-  &:not(.calendar--month-length--31),
+  &:not(.calendar--start-day-sun),
+  &:not(.calendar--month-length-31),
   &.calendar--start-day-wed,
   &.calendar--month-length-29 {
     .calendar__day::before {
@@ -83,15 +83,7 @@ body {
       }
     }
   }
-
-  @each $day, $offset in $weekdays {
-    &--start-day-#{$day} {
-      .calendar__day:first-child {
-        margin-left: if($offset > 0, $offset * $day-step, 0);
-      }
-    }
-  }
-
+  
   @for $length from 28 through $calendar-days-count {
     &--month-length-#{$length} {
       .calendar__day:nth-child(n + #{$length + 1}) {
